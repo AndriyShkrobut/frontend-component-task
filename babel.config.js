@@ -1,12 +1,12 @@
 module.exports = {
-  presets: [
-    '@babel/preset-typescript',
+  presets: [['@babel/preset-env', {targets: '> 0.25%, not dead'}], '@babel/react'],
+  plugins: [
     [
-      '@babel/preset-env',
+      'babel-plugin-styled-components',
       {
-        targets: {
-          node: '12'
-        }
+        ssr: false,
+        fileName: false,
+        pure: true
       }
     ]
   ]

@@ -1,29 +1,31 @@
 {
-  "name": "@shelf/xxxxxx",
+  "name": "react-manage-roles",
   "version": "0.0.0",
-  "description": "xxxxxx",
+  "description": "React Component for permissions management according to predefined roles",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AndriyShkrobut/frontend-component-task"
+  },
   "license": "MIT",
   "author": {
-    "name": "Vlad Holubiev",
-    "email": "vlad@shelf.io",
-    "url": "https://shelf.io"
+    "name": "Andrii Shkrobut",
+    "email": "andrii.shkrobut@gmail.com"
   },
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "files": [
     "lib"
   ],
-  "main": "lib",
-  "types": "lib/index.d.ts",
   "scripts": {
-    "build": "rm -rf lib/ && yarn build:types && yarn build:code",
-    "build:code": "babel src --out-dir lib --ignore '**/*.test.ts' --extensions '.ts' && find ./lib -name '*.test.d.ts' -delete",
-    "build:types": "tsc --emitDeclarationOnly --declaration --isolatedModules false --declarationDir lib",
+    "build": "rm -rf lib/ && webpack --mode production",
     "coverage": "yarn test --coverage",
     "lint": "eslint . --ext .js,.ts,.json --fix",
     "lint:ci": "eslint . --ext .js,.ts,.json",
     "prepack": "yarn build",
+    "start": "webpack serve --mode development --hot",
     "test": "TZ=UTC jest src",
     "type-check": "tsc --noEmit",
-    "type-check:watch": "npm run type-check -- --watch"
+    "type-check:watch": "yarn type-check -- --watch"
   },
   "husky": {
     "hooks": {
@@ -45,23 +47,40 @@
   "jest": {
     "testEnvironment": "node"
   },
-  "dependencies": {},
+  "dependencies": {
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
+    "styled-components": "5.2.1"
+  },
   "devDependencies": {
     "@babel/cli": "7.8.4",
     "@babel/core": "7.9.0",
     "@babel/preset-env": "7.9.0",
+    "@babel/preset-react": "7.12.10",
     "@babel/preset-typescript": "7.9.0",
     "@shelf/eslint-config": "0.14.2",
     "@shelf/prettier-config": "0.0.1",
     "@types/jest": "26.0.9",
     "@types/node": "12",
+    "@types/react": "17.0.0",
+    "@types/react-dom": "17.0.0",
+    "@types/styled-components": "5.1.7",
     "babel-jest": "26.2.2",
+    "babel-loader": "8.2.2",
+    "babel-plugin-styled-components": "1.12.0",
     "eslint": "7.7.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "file-loader": "6.2.0",
+    "html-webpack-plugin": "4.5.1",
     "husky": "4.2.5",
     "jest": "26.2.2",
     "lint-staged": "10.2.11",
     "prettier": "2.0.5",
-    "typescript": "3.8.3"
+    "ts-loader": "8.0.14",
+    "typescript": "3.8.3",
+    "webpack": "5.12.1",
+    "webpack-cli": "4.3.1",
+    "webpack-dev-server": "3.11.1"
   },
   "engines": {
     "node": ">=12"
