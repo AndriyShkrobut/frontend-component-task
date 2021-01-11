@@ -1,28 +1,31 @@
 import React, {useState} from 'react';
-import Checkbox from 'components/Checkbox';
-import Select from 'components/Select';
+import RoleSelector, {RoleSelectorState} from 'components/RoleSelector';
 
 const App: React.FC = () => {
-  const [isChecked, setIsChecked] = useState<boolean>(false);
-  const [selectValue, setSelectValue] = useState<string>('');
+  const [permissions, setPermissions] = useState<RoleSelectorState>({} as RoleSelectorState);
 
-  const handleCheckboxChange = (value: boolean): void => {
-    setIsChecked(value);
+  const handleRoleSelectorSubmit = (roleSelectorState: RoleSelectorState): void => {
+    setPermissions(roleSelectorState);
   };
 
-  const handleSelectChange = (value: string): void => {
-    setSelectValue(value);
+  const handleRoleSelect = (roleSelectorState: RoleSelectorState): void => {
+    setPermissions(roleSelectorState);
+  };
+
+  const handleRoleSelectorChange = (roleSelectorState: RoleSelectorState): void => {
+    setPermissions(roleSelectorState);
   };
 
   return (
     <React.Fragment>
-      <Select
-        options={['admin', 'user', 'member', 'custom']}
-        selected={selectValue}
-        onChange={handleSelectChange}
-        label={'Hello World'}
+      <RoleSelector
+        onSubmit={handleRoleSelectorSubmit}
+        onChange={handleRoleSelectorChange}
+        onSelect={handleRoleSelect}
       />
-      <Checkbox checked={isChecked} label={'Hello World'} onChange={handleCheckboxChange} />
+      <pre>
+        <code>{JSON.stringify(permissions, null, 2)}</code>
+      </pre>
     </React.Fragment>
   );
 };

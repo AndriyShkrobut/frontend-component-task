@@ -27,6 +27,10 @@ export const StyledCheckbox = styled.div`
     background-image: url(${UnCheck});
   }
 
+  &:hover:before {
+    background-color: #f0f0f0;
+  }
+
   &:focus:before {
     outline-color: #101;
     outline-width: 1px;
